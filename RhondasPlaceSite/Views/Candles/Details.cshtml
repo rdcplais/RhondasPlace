@@ -1,0 +1,106 @@
+﻿@model RhondasPlaceSite.Models.Candle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Candle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdateUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdateUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CandleSize.CandleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CandleSize.CandleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CandleType.CandleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CandleType.CandleDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.ImageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image.ImageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lid.LidDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lid.LidDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scent.ScentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scent.ScentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CandleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cfbedfd188504a8a8a493efbc9c6fae6" Name="Diagram1">
+        <EntityTypeShape EntityType="RhondasPlace_1Model.C__RefactorLog" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.Candle" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.CandleSize" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.CandleType" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.Image" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.Lid" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RhondasPlace_1Model.Scent" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <AssociationConnector Association="RhondasPlace_1Model.FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID" ManuallyRouted="false" />
+        <AssociationConnector Association="RhondasPlace_1Model.FK_dbo_CandleType_dbo_CandleType_CandleTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="RhondasPlace_1Model.FK_dbo_Image_dbo_Image_ImageID" ManuallyRouted="false" />
+        <AssociationConnector Association="RhondasPlace_1Model.FK_dbo_Lid_dbo_Lid_LidID" ManuallyRouted="false" />
+        <AssociationConnector Association="RhondasPlace_1Model.FK_dbo_Scent_dbo_Scent_ScentID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

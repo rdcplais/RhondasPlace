@@ -1,0 +1,82 @@
+﻿@model IEnumerable<RhondasPlaceSite.Models.Scent>
+
+@{
+    ViewBag.Title = "Scents";
+}
+
+<p>@*Use this area to provide additional information.*@</p>
+
+
+<div class="container">
+    <div class="jumbotron-special">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ScentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdateUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Season)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSeasonal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdateUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Season)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSeasonal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ScentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ScentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ScentID })
+        </td>
+    </tr>
+}
+
+</table>

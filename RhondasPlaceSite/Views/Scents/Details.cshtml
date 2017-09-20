@@ -1,0 +1,179 @@
+﻿@model RhondasPlaceSite.Models.Scent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Scent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdateUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdateUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSeasonal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSeasonal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+
+    <table class="table">
+        <tr>
+            <th>
+                Candle
+                @*@Html.DisplayNameFor(model => model.Image.ImageURL)*@
+            </th>
+            <th>Description
+                @*@Html.DisplayNameFor(modelItem => item.CandleSize.Size)*@
+                @*@Html.DisplayNameFor(model => model.CandleType.CandleDescription)*@
+            </th>
+            <th>
+                Description
+                @*@Html.DisplayNameFor(model => model.CandleSize.CandleName)*@
+            </th>
+            <th>
+                Scent
+                @*@Html.DisplayNameFor(model => model.Scent.ScentName)*@
+            </th>
+            <th>
+                Lid
+                @*@Html.DisplayNameFor(model => model.Lid.LidDescription)*@
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AddDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdateUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                Price
+                @*@Html.DisplayNameFor(model => model.Price)*@
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Candles)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(item.Image.ImageURL)" alt="IMAGES" />
+                    @*@Html.DisplayFor(modelItem => item.Image.ImageURL)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandleSize.Size)
+                    @Html.DisplayFor(modelItem => item.CandleSize.Unit)
+                    @*@Html.DisplayFor(modelItem => item.CandleSize.CandleName)*@
+                    @*@Html.DisplayFor(modelItem => item.CandleType.CandleDescription)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandleSize.CandleName)
+                </td>
+                <td>
+                    @*@Html.DropDownListFor(p => item.Scent.ScentName, null, "--- Kies een antwoord ---")
+                        @Html.ValidationMessageFor(m => item.Scent.ScentName)*@
+                    @Html.DisplayFor(modelItem => item.Scent.ScentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lid.LidDescription)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastUpdateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastUpdateUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CandleID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CandleID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CandleID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ScentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RhondasPlace_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Candle">
+          <Key>
+            <PropertyRef Name="CandleID" />
+          </Key>
+          <Property Name="CandleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageID" Type="int" Nullable="false" />
+          <Property Name="CandleTypeID" Type="int" Nullable="false" />
+          <Property Name="CandleSizeID" Type="int" Nullable="false" />
+          <Property Name="ScentID" Type="int" Nullable="false" />
+          <Property Name="LidID" Type="int" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CandleSize">
+          <Key>
+            <PropertyRef Name="CandleSizeID" />
+          </Key>
+          <Property Name="CandleSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CandleType">
+          <Key>
+            <PropertyRef Name="CandleTypeID" />
+          </Key>
+          <Property Name="CandleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandleDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CandleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lid">
+          <Key>
+            <PropertyRef Name="LidID" />
+          </Key>
+          <Property Name="LidID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LidDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scent">
+          <Key>
+            <PropertyRef Name="ScentID" />
+          </Key>
+          <Property Name="ScentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Season" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSeasonal" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID">
+          <End Role="CandleSize" Type="Self.CandleSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandleSize">
+              <PropertyRef Name="CandleSizeID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="CandleSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CandleType_dbo_CandleType_CandleTypeID">
+          <End Role="CandleType" Type="Self.CandleType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandleType">
+              <PropertyRef Name="CandleTypeID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="CandleTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Image_dbo_Image_ImageID">
+          <End Role="Image" Type="Self.Image" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Lid_dbo_Lid_LidID">
+          <End Role="Lid" Type="Self.Lid" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lid">
+              <PropertyRef Name="LidID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="LidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Scent_dbo_Scent_ScentID">
+          <End Role="Scent" Type="Self.Scent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scent">
+              <PropertyRef Name="ScentID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="ScentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RhondasPlace_1ModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Candle" EntityType="Self.Candle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandleSize" EntityType="Self.CandleSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandleType" EntityType="Self.CandleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lid" EntityType="Self.Lid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scent" EntityType="Self.Scent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID" Association="Self.FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID">
+            <End Role="CandleSize" EntitySet="CandleSize" />
+            <End Role="Candle" EntitySet="Candle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CandleType_dbo_CandleType_CandleTypeID" Association="Self.FK_dbo_CandleType_dbo_CandleType_CandleTypeID">
+            <End Role="CandleType" EntitySet="CandleType" />
+            <End Role="Candle" EntitySet="Candle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Image_dbo_Image_ImageID" Association="Self.FK_dbo_Image_dbo_Image_ImageID">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Candle" EntitySet="Candle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Lid_dbo_Lid_LidID" Association="Self.FK_dbo_Lid_dbo_Lid_LidID">
+            <End Role="Lid" EntitySet="Lid" />
+            <End Role="Candle" EntitySet="Candle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Scent_dbo_Scent_ScentID" Association="Self.FK_dbo_Scent_dbo_Scent_ScentID">
+            <End Role="Scent" EntitySet="Scent" />
+            <End Role="Candle" EntitySet="Candle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RhondasPlace_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Candle">
+          <Key>
+            <PropertyRef Name="CandleID" />
+          </Key>
+          <Property Name="CandleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageID" Type="Int32" Nullable="false" />
+          <Property Name="CandleTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CandleSizeID" Type="Int32" Nullable="false" />
+          <Property Name="ScentID" Type="Int32" Nullable="false" />
+          <Property Name="LidID" Type="Int32" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CandleSize" Relationship="Self.FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID" FromRole="Candle" ToRole="CandleSize" />
+          <NavigationProperty Name="CandleType" Relationship="Self.FK_dbo_CandleType_dbo_CandleType_CandleTypeID" FromRole="Candle" ToRole="CandleType" />
+          <NavigationProperty Name="Image" Relationship="Self.FK_dbo_Image_dbo_Image_ImageID" FromRole="Candle" ToRole="Image" />
+          <NavigationProperty Name="Lid" Relationship="Self.FK_dbo_Lid_dbo_Lid_LidID" FromRole="Candle" ToRole="Lid" />
+          <NavigationProperty Name="Scent" Relationship="Self.FK_dbo_Scent_dbo_Scent_ScentID" FromRole="Candle" ToRole="Scent" />
+        </EntityType>
+        <EntityType Name="CandleSize">
+          <Key>
+            <PropertyRef Name="CandleSizeID" />
+          </Key>
+          <Property Name="CandleSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Candles" Relationship="Self.FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID" FromRole="CandleSize" ToRole="Candle" />
+        </EntityType>
+        <EntityType Name="CandleType">
+          <Key>
+            <PropertyRef Name="CandleTypeID" />
+          </Key>
+          <Property Name="CandleTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandleDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CandleType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Candles" Relationship="Self.FK_dbo_CandleType_dbo_CandleType_CandleTypeID" FromRole="CandleType" ToRole="Candle" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Candles" Relationship="Self.FK_dbo_Image_dbo_Image_ImageID" FromRole="Image" ToRole="Candle" />
+        </EntityType>
+        <EntityType Name="Lid">
+          <Key>
+            <PropertyRef Name="LidID" />
+          </Key>
+          <Property Name="LidID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LidDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Candles" Relationship="Self.FK_dbo_Lid_dbo_Lid_LidID" FromRole="Lid" ToRole="Candle" />
+        </EntityType>
+        <EntityType Name="Scent">
+          <Key>
+            <PropertyRef Name="ScentID" />
+          </Key>
+          <Property Name="ScentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsSeasonal" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Candles" Relationship="Self.FK_dbo_Scent_dbo_Scent_ScentID" FromRole="Scent" ToRole="Candle" />
+        </EntityType>
+        <Association Name="FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID">
+          <End Role="CandleSize" Type="Self.CandleSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandleSize">
+              <PropertyRef Name="CandleSizeID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="CandleSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CandleType_dbo_CandleType_CandleTypeID">
+          <End Role="CandleType" Type="Self.CandleType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandleType">
+              <PropertyRef Name="CandleTypeID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="CandleTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Image_dbo_Image_ImageID">
+          <End Role="Image" Type="Self.Image" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Lid_dbo_Lid_LidID">
+          <End Role="Lid" Type="Self.Lid" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lid">
+              <PropertyRef Name="LidID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="LidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Scent_dbo_Scent_ScentID">
+          <End Role="Scent" Type="Self.Scent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Candle" Type="Self.Candle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scent">
+              <PropertyRef Name="ScentID" />
+            </Principal>
+            <Dependent Role="Candle">
+              <PropertyRef Name="ScentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RhondasPlace_1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Candles" EntityType="Self.Candle" />
+          <EntitySet Name="CandleSizes" EntityType="Self.CandleSize" />
+          <EntitySet Name="CandleTypes" EntityType="Self.CandleType" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Lids" EntityType="Self.Lid" />
+          <EntitySet Name="Scents" EntityType="Self.Scent" />
+          <AssociationSet Name="FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID" Association="Self.FK_dbo_CandleSize_dbo_CandleSize_CandleSizeID">
+            <End Role="CandleSize" EntitySet="CandleSizes" />
+            <End Role="Candle" EntitySet="Candles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CandleType_dbo_CandleType_CandleTypeID" Association="Self.FK_dbo_CandleType_dbo_CandleType_CandleTypeID">
+            <End Role="CandleType" EntitySet="CandleTypes" />
+            <End Role="Candle" EntitySet="Candles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Image_dbo_Image_ImageID" Association="Self.FK_dbo_Image_dbo_Image_ImageID">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Candle" EntitySet="Candles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Lid_dbo_Lid_LidID" Association="Self.FK_dbo_Lid_dbo_Lid_LidID">
+            <End Role="Lid" EntitySet="Lids" />
+            <End Role="Candle" EntitySet="Candles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Scent_dbo_Scent_ScentID" Association="Self.FK_dbo_Scent_dbo_Scent_ScentID">
+            <End Role="Scent" EntitySet="Scents" />
+            <End Role="Candle" EntitySet="Candles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RhondasPlace_1ModelStoreContainer" CdmEntityContainer="RhondasPlace_1Entities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Candles">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.Candle">
+              <MappingFragment StoreEntitySet="Candle">
+                <ScalarProperty Name="CandleID" ColumnName="CandleID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="CandleTypeID" ColumnName="CandleTypeID" />
+                <ScalarProperty Name="CandleSizeID" ColumnName="CandleSizeID" />
+                <ScalarProperty Name="ScentID" ColumnName="ScentID" />
+                <ScalarProperty Name="LidID" ColumnName="LidID" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandleSizes">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.CandleSize">
+              <MappingFragment StoreEntitySet="CandleSize">
+                <ScalarProperty Name="CandleSizeID" ColumnName="CandleSizeID" />
+                <ScalarProperty Name="CandleName" ColumnName="CandleName" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandleTypes">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.CandleType">
+              <MappingFragment StoreEntitySet="CandleType">
+                <ScalarProperty Name="CandleTypeID" ColumnName="CandleTypeID" />
+                <ScalarProperty Name="CandleDescription" ColumnName="CandleDescription" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="CandleType1" ColumnName="CandleType" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lids">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.Lid">
+              <MappingFragment StoreEntitySet="Lid">
+                <ScalarProperty Name="LidID" ColumnName="LidID" />
+                <ScalarProperty Name="LidDescription" ColumnName="LidDescription" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scents">
+            <EntityTypeMapping TypeName="RhondasPlace_1Model.Scent">
+              <MappingFragment StoreEntitySet="Scent">
+                <ScalarProperty Name="ScentID" ColumnName="ScentID" />
+                <ScalarProperty Name="ScentName" ColumnName="ScentName" />
+                <ScalarProperty Name="AddDateTime" ColumnName="AddDateTime" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateUserName" ColumnName="LastUpdateUserName" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="IsSeasonal" ColumnName="IsSeasonal" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
